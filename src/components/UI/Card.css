@@ -1,0 +1,143 @@
+/* ========================================
+   CARD COMPONENT
+   ======================================== */
+
+.card {
+    background-color: var(--bg-secondary);
+    border-radius: var(--radius-xl);
+    border: 1px solid var(--border-primary);
+    transition: all var(--transition-base);
+    overflow: hidden;
+}
+
+/* ===== VARIANTS ===== */
+
+.card-default {
+    box-shadow: var(--shadow-sm);
+}
+
+.card-bordered {
+    box-shadow: none;
+    border: 2px solid var(--border-primary);
+}
+
+.card-flat {
+    box-shadow: none;
+    border: none;
+}
+
+.card-elevated {
+    box-shadow: var(--shadow-md);
+}
+
+/* ===== INTERACTIVE (Hoverable/Clickable) ===== */
+
+.card-interactive {
+    cursor: pointer;
+}
+
+.card-interactive:hover {
+    transform: translateY(-2px);
+    box-shadow: var(--shadow-lg);
+    border-color: var(--border-secondary);
+}
+
+.card-interactive:active {
+    transform: translateY(0);
+    box-shadow: var(--shadow-md);
+}
+
+/* ===== PADDING VARIANTS ===== */
+
+.card-padding-none {
+    padding: 0;
+}
+
+.card-padding-sm {
+    padding: var(--space-3);
+}
+
+.card-padding-md {
+    padding: var(--space-4);
+}
+
+.card-padding-lg {
+    padding: var(--space-6);
+}
+
+.card-padding-xl {
+    padding: var(--space-8);
+}
+
+/* ===== CARD SECTIONS ===== */
+
+.card-header {
+    padding: var(--space-4) var(--space-6);
+    border-bottom: 1px solid var(--border-primary);
+}
+
+.card-header-title {
+    font-size: var(--text-lg);
+    font-weight: var(--font-semibold);
+    color: var(--text-primary);
+    margin: 0;
+}
+
+.card-header-subtitle {
+    font-size: var(--text-sm);
+    color: var(--text-secondary);
+    margin-top: var(--space-1);
+}
+
+.card-body {
+    padding: var(--space-6);
+}
+
+.card-footer {
+    padding: var(--space-4) var(--space-6);
+    border-top: 1px solid var(--border-primary);
+    background-color: var(--bg-tertiary);
+}
+
+/* ===== IMAGE CARD ===== */
+
+.card-image {
+    width: 100%;
+    height: auto;
+    display: block;
+}
+
+.card-image-container {
+    position: relative;
+    width: 100%;
+    overflow: hidden;
+}
+
+.card-image-container img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    transition: transform var(--transition-base);
+}
+
+.card-interactive .card-image-container img:hover {
+    transform: scale(1.05);
+}
+
+/* ===== LOADING STATE ===== */
+
+.card-loading {
+    position: relative;
+    min-height: 150px;
+}
+
+.card-loading::after {
+    content: '';
+    position: absolute;
+    inset: 0;
+    background: linear-gradient(90deg,
+            transparent,
+            rgba(255, 255, 255, 0.05),
+            transparent);
+    animation: shimmer 2s ease-in-out infinite;
+}

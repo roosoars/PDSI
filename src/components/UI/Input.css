@@ -1,0 +1,178 @@
+/* ========================================
+   INPUT COMPONENT
+   ======================================== */
+
+.input-wrapper {
+    display: flex;
+    flex-direction: column;
+    gap: var(--space-2);
+    width: 100%;
+}
+
+.input-label {
+    display: block;
+    font-size: var(--text-sm);
+    font-weight: var(--font-medium);
+    color: var(--text-primary);
+    margin-bottom: var(--space-1);
+}
+
+.input-label.required::after {
+    content: ' *';
+    color: var(--error);
+}
+
+.input {
+    width: 100%;
+    padding: var(--space-3) var(--space-4);
+
+    font-family: var(--font-sans);
+    font-size: var(--text-base);
+    line-height: var(--leading-normal);
+
+    color: var(--text-primary);
+    background-color: var(--bg-secondary);
+
+    border: 1px solid var(--border-primary);
+    border-radius: var(--radius-lg);
+
+    outline: none;
+    transition: all var(--transition-base);
+}
+
+.input::placeholder {
+    color: var(--text-tertiary);
+}
+
+.input:hover:not(:disabled) {
+    border-color: var(--border-secondary);
+}
+
+.input:focus {
+    border-color: var(--border-focus);
+    box-shadow: 0 0 0 3px var(--brand-light);
+    background-color: var(--bg-secondary);
+}
+
+.input:disabled {
+    opacity: 0.5;
+    cursor: not-allowed;
+    background-color: var(--bg-tertiary);
+}
+
+/* ===== ERROR STATE ===== */
+
+.input-error {
+    border-color: var(--error);
+}
+
+.input-error:focus {
+    border-color: var(--error);
+    box-shadow: 0 0 0 3px var(--error-light);
+}
+
+.input-error-text {
+    display: block;
+    font-size: var(--text-sm);
+    color: var(--error);
+    margin-top: var(--space-1);
+}
+
+/* ===== SUCCESS STATE ===== */
+
+.input-success {
+    border-color: var(--success);
+}
+
+.input-success:focus {
+    border-color: var(--success);
+    box-shadow: 0 0 0 3px var(--success-light);
+}
+
+/* ===== SIZES ===== */
+
+.input-sm {
+    padding: var(--space-2) var(--space-3);
+    font-size: var(--text-sm);
+}
+
+.input-lg {
+    padding: var(--space-4) var(--space-5);
+    font-size: var(--text-lg);
+}
+
+/* ===== WITH ICON ===== */
+
+.input-with-icon-container {
+    position: relative;
+    display: flex;
+    align-items: center;
+}
+
+.input-icon {
+    position: absolute;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: var(--text-tertiary);
+    pointer-events: none;
+}
+
+.input-icon.left {
+    left: var(--space-3);
+}
+
+.input-icon.right {
+    right: var(--space-3);
+}
+
+.input-with-icon-left {
+    padding-left: var(--space-10);
+}
+
+.input-with-icon-right {
+    padding-right: var(--space-10);
+}
+
+/* ===== TEXTAREA ===== */
+
+textarea.input {
+    min-height: 100px;
+    resize: vertical;
+    line-height: var(--leading-relaxed);
+}
+
+/* ===== SELECT ===== */
+
+select.input {
+    cursor: pointer;
+    background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='16' height='16' viewBox='0 0 24 24' fill='none' stroke='%2364748b' stroke-width='2' stroke-linecap='round' stroke-linejoin='round'%3E%3Cpolyline points='6 9 12 15 18 9'%3E%3C/polyline%3E%3C/svg%3E");
+    background-repeat: no-repeat;
+    background-position: right var(--space-3) center;
+    background-size: 16px;
+    padding-right: var(--space-10);
+    appearance: none;
+}
+
+/* Dark mode select arrow */
+[data-theme='dark'] select.input {
+    background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='16' height='16' viewBox='0 0 24 24' fill='none' stroke='%2394a3b8' stroke-width='2' stroke-linecap='round' stroke-linejoin='round'%3E%3Cpolyline points='6 9 12 15 18 9'%3E%3C/polyline%3E%3C/svg%3E");
+}
+
+/* ===== HELPER TEXT ===== */
+
+.input-helper {
+    font-size: var(--text-sm);
+    color: var(--text-tertiary);
+}
+
+/* ===== INPUT GROUP ===== */
+
+.input-group {
+    display: flex;
+    gap: var(--space-2);
+}
+
+.input-group .input {
+    flex: 1;
+}

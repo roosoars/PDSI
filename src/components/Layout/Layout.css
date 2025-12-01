@@ -1,0 +1,55 @@
+/* ========================================
+   LAYOUT COMPONENT
+   ======================================== */
+
+.layout {
+    width: 100%;
+    min-height: 100vh;
+    display: flex;
+    flex-direction: column;
+    background-color: var(--bg-primary);
+}
+
+.layout__content {
+    flex: 1;
+    width: 100%;
+    max-width: var(--max-width-container);
+    margin: 0 auto;
+    padding: var(--space-6);
+
+    display: flex;
+    flex-direction: column;
+}
+
+/* ===== LAYOUT VARIANTS ===== */
+
+/* Full Width Layout */
+.layout--full {
+    max-width: none;
+}
+
+.layout--full .layout__content {
+    max-width: none;
+    padding: var(--space-4);
+}
+
+/* Centered Layout */
+.layout--centered .layout__content {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+/* ===== RESPONSIVE ===== */
+
+@media (max-width: 768px) {
+    .layout__content {
+        padding: var(--space-4);
+    }
+}
+
+@media (max-width: 480px) {
+    .layout__content {
+        padding: var(--space-3);
+    }
+}

@@ -1,0 +1,157 @@
+/* ========================================
+   SPINNER COMPONENT
+   ======================================== */
+
+.spinner {
+    display: inline-block;
+    border-radius: 50%;
+    border-style: solid;
+    border-color: currentColor;
+    border-top-color: transparent;
+    animation: spin 0.6s linear infinite;
+}
+
+/* ===== SIZES ===== */
+
+.spinner-xs {
+    width: 12px;
+    height: 12px;
+    border-width: 2px;
+}
+
+.spinner-sm {
+    width: 16px;
+    height: 16px;
+    border-width: 2px;
+}
+
+.spinner-md {
+    width: 24px;
+    height: 24px;
+    border-width: 3px;
+}
+
+.spinner-lg {
+    width: 32px;
+    height: 32px;
+    border-width: 3px;
+}
+
+.spinner-xl {
+    width: 48px;
+    height: 48px;
+    border-width: 4px;
+}
+
+/* ===== VARIANTS ===== */
+
+.spinner-primary {
+    color: var(--brand-primary);
+}
+
+.spinner-secondary {
+    color: var(--text-secondary);
+}
+
+.spinner-light {
+    color: white;
+}
+
+.spinner-dark {
+    color: var(--text-primary);
+}
+
+/* ===== SPINNER WITH TEXT ===== */
+
+.spinner-container {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    gap: var(--space-3);
+}
+
+.spinner-text {
+    font-size: var(--text-sm);
+    color: var(--text-secondary);
+}
+
+/* ===== FULL PAGE SPINNER ===== */
+
+.spinner-fullpage {
+    position: fixed;
+    inset: 0;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background-color: var(--overlay);
+    z-index: var(--z-modal);
+    backdrop-filter: blur(4px);
+}
+
+.spinner-fullpage .spinner {
+    width: 48px;
+    height: 48px;
+    border-width: 4px;
+}
+
+/* ===== DOTS SPINNER (Alternative) ===== */
+
+.spinner-dots {
+    display: inline-flex;
+    align-items: center;
+    gap: var(--space-2);
+}
+
+.spinner-dot {
+    width: 8px;
+    height: 8px;
+    border-radius: 50%;
+    background-color: currentColor;
+    animation: pulse 1.4s ease-in-out infinite;
+}
+
+.spinner-dot:nth-child(1) {
+    animation-delay: 0s;
+}
+
+.spinner-dot:nth-child(2) {
+    animation-delay: 0.2s;
+}
+
+.spinner-dot:nth-child(3) {
+    animation-delay: 0.4s;
+}
+
+/* ===== PULSE SPINNER (Alternative) ===== */
+
+.spinner-pulse {
+    position: relative;
+    width: 40px;
+    height: 40px;
+}
+
+.spinner-pulse::before,
+.spinner-pulse::after {
+    content: '';
+    position: absolute;
+    inset: 0;
+    border: 2px solid currentColor;
+    border-radius: 50%;
+    animation: pulse-ring 1.5s ease-out infinite;
+}
+
+.spinner-pulse::after {
+    animation-delay: 0.75s;
+}
+
+@keyframes pulse-ring {
+    0% {
+        transform: scale(0.5);
+        opacity: 1;
+    }
+
+    100% {
+        transform: scale(1.2);
+        opacity: 0;
+    }
+}
