@@ -26,7 +26,7 @@ describe('Button', () => {
 
     it('should show loading state', () => {
         const { container } = render(<Button loading>Click me</Button>);
-        expect(container.querySelector('.spinner')).toBeInTheDocument();
+        expect(container.querySelector('.btn-spinner')).toBeInTheDocument();
     });
 
     it('should apply correct variant classes', () => {

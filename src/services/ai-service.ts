@@ -1,6 +1,6 @@
 import { GoogleGenerativeAI } from '@google/generative-ai';
 import OpenAI from 'openai';
-import type { ImageMetadata, Language, DescriptionStyle, Result } from '../context/AppContext';
+import type { ImageMetadata, Language, DescriptionStyle, Result } from '../types';
 
 export interface AIResponse {
     alt: string;
