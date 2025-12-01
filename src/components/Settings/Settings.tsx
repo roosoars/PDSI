@@ -1,5 +1,6 @@
 import { useState } from 'react';
-import { useApp, GEMINI_MODELS, OPENAI_MODELS } from '../../context/AppContext';
+import { useApp } from '../../context/AppContext';
+import { GEMINI_MODELS, OPENAI_MODELS, type Language, type DescriptionStyle } from '../../types';
 import Modal from '../UI/Modal';
 import Input from '../UI/Input';
 import Button from '../UI/Button';
@@ -106,7 +107,7 @@ export default function Settings({ onClose }: { onClose: () => void }) {
                         <select
                             className="input"
                             value={language}
-                            onChange={(e) => setLanguage(e.target.value as any)}
+                            onChange={(e) => setLanguage(e.target.value as Language)}
                         >
                             <option value="pt-BR">Português (Brasil)</option>
                             <option value="en-US">English (US)</option>
@@ -120,7 +121,7 @@ export default function Settings({ onClose }: { onClose: () => void }) {
                         <select
                             className="input"
                             value={style}
-                            onChange={(e) => setStyle(e.target.value as any)}
+                            onChange={(e) => setStyle(e.target.value as DescriptionStyle)}
                         >
                             <option value="concise">Conciso (Direto ao ponto)</option>
                             <option value="detailed">Detalhado (Completo)</option>

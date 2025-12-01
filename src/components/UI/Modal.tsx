@@ -31,6 +31,14 @@ export default function Modal({
 }: ModalProps) {
     const [isClosing, setIsClosing] = useState(false);
 
+    const handleClose = () => {
+        setIsClosing(true);
+        setTimeout(() => {
+            setIsClosing(false);
+            onClose();
+        }, 200); // Match animation duration
+    };
+
     useEffect(() => {
         const handleEscape = (e: KeyboardEvent) => {
             if (closeOnEscape && e.key === 'Escape') {
@@ -48,14 +56,6 @@ export default function Modal({
             document.body.style.overflow = '';
         };
     }, [isOpen, closeOnEscape]);
-
-    const handleClose = () => {
-        setIsClosing(true);
-        setTimeout(() => {
-            setIsClosing(false);
-            onClose();
-        }, 200); // Match animation duration
-    };
 
     const handleBackdropClick = (e: React.MouseEvent) => {
         if (closeOnBackdrop && e.target === e.currentTarget) {

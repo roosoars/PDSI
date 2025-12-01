@@ -23,6 +23,13 @@ export default function Toast({
 }: ToastProps) {
     const [isClosing, setIsClosing] = useState(false);
 
+    const handleClose = () => {
+        setIsClosing(true);
+        setTimeout(() => {
+            onClose();
+        }, 200); // Match animation duration
+    };
+
     useEffect(() => {
         const timer = setTimeout(() => {
             handleClose();
@@ -30,13 +37,6 @@ export default function Toast({
 
         return () => clearTimeout(timer);
     }, [duration]);
-
-    const handleClose = () => {
-        setIsClosing(true);
-        setTimeout(() => {
-            onClose();
-        }, 200); // Match animation duration
-    };
 
     const icons = {
         success: <CheckCircle size={20} />,

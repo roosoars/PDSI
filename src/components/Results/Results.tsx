@@ -1,5 +1,6 @@
 import { useState } from 'react';
 import { useApp } from '../../context/AppContext';
+import { type Result } from '../../types';
 import Card, { CardHeader, CardBody } from '../UI/Card';
 import Button from '../UI/Button';
 import Badge from '../UI/Badge';
@@ -51,7 +52,7 @@ export default function Results() {
     );
 }
 
-function ResultCard({ result, onUpdate }: { result: any; onUpdate: (alt: string) => void }) {
+function ResultCard({ result, onUpdate }: { result: Result; onUpdate: (alt: string) => void }) {
     const [isEditing, setIsEditing] = useState(false);
     const [editValue, setEditValue] = useState(result.alt);
     const [copied, setCopied] = useState(false);
