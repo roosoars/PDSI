@@ -1,4 +1,5 @@
-import { describe, it, expect, vi } from 'vitest';
+import { describe, it, expect, vi, type Mock } from 'vitest';
+import React from 'react';
 import { render, screen } from '@testing-library/react';
 import userEvent from '@testing-library/user-event';
 import Workspace from '../../../components/Workspace/Workspace';
@@ -19,7 +20,7 @@ vi.mock('../../../services/firebase', () => ({
 }));
 
 vi.mock('../../../components/Layout/Layout', () => ({
-    default: ({ children }: any) => <div data-testid="layout">{children}</div>
+    default: ({ children }: { children: React.ReactNode }) => <div data-testid="layout">{children}</div>
 }));
 
 describe('Workspace', () => {
@@ -39,13 +40,13 @@ describe('Workspace', () => {
     };
 
     it('renders upload zone initially', () => {
-        (useApp as any).mockReturnValue(mockContext);
+        (useApp as unknown as Mock).mockReturnValue(mockContext);
         render(<Workspace />);
         expect(screen.getByText(/Clique ou arraste imagens aqui/i)).toBeInTheDocument();
     });
 
     it('switches tabs', async () => {
-        (useApp as any).mockReturnValue({ ...mockContext, history: [] }); // History component needs history
+        (useApp as unknown as Mock).mockReturnValue({ ...mockContext, history: [] }); // History component needs history
         const user = userEvent.setup();
         render(<Workspace />);
 
@@ -55,8 +56,8 @@ describe('Workspace', () => {
     });
 
     it('handles file upload and processing', async () => {
-        (useApp as any).mockReturnValue(mockContext);
-        (generateBatchDescriptions as any).mockResolvedValue([
+        (useApp as unknown as Mock).mockReturnValue(mockContext);
+        (generateBatchDescriptions as unknown as Mock).mockResolvedValue([
             { filename: 'test.png', alt: 'Test Alt' }
         ]);
 

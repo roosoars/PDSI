@@ -1,4 +1,4 @@
-import { describe, it, expect, vi } from 'vitest';
+import { describe, it, expect, vi, type Mock } from 'vitest';
 import { render, screen } from '@testing-library/react';
 import userEvent from '@testing-library/user-event';
 import History from '../../../components/History/History';
@@ -11,7 +11,7 @@ vi.mock('../../../context/AppContext', () => ({
 
 describe('History', () => {
     it('renders empty state when no history', () => {
-        (useApp as any).mockReturnValue({
+        (useApp as unknown as Mock).mockReturnValue({
             history: [],
             clearHistory: vi.fn(),
         });
@@ -21,7 +21,7 @@ describe('History', () => {
     });
 
     it('renders history items', () => {
-        (useApp as any).mockReturnValue({
+        (useApp as unknown as Mock).mockReturnValue({
             history: [
                 { filename: 'img1.png', alt: 'Alt 1', description: 'Desc 1', timestamp: Date.now() },
                 { filename: 'img2.png', alt: 'Alt 2', description: 'Desc 2', timestamp: Date.now() }
@@ -37,7 +37,7 @@ describe('History', () => {
 
     it('calls clear history', async () => {
         const clearHistoryMock = vi.fn();
-        (useApp as any).mockReturnValue({
+        (useApp as unknown as Mock).mockReturnValue({
             history: [{ filename: 'img1.png', alt: 'Alt 1' }],
             clearHistory: clearHistoryMock,
         });

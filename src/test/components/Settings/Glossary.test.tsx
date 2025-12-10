@@ -1,4 +1,4 @@
-import { describe, it, expect, vi } from 'vitest';
+import { describe, it, expect, vi, type Mock } from 'vitest';
 import { render, screen } from '@testing-library/react';
 import userEvent from '@testing-library/user-event';
 import Glossary from '../../../components/Settings/Glossary';
@@ -10,7 +10,7 @@ vi.mock('../../../context/AppContext', () => ({
 
 describe('Glossary', () => {
     it('renders existing terms', () => {
-        (useApp as any).mockReturnValue({
+        (useApp as unknown as Mock).mockReturnValue({
             glossary: [{ term: 'T1', definition: 'D1' }],
             addGlossaryTerm: vi.fn(),
             removeGlossaryTerm: vi.fn(),
@@ -23,7 +23,7 @@ describe('Glossary', () => {
 
     it('adds new term', async () => {
         const addMock = vi.fn();
-        (useApp as any).mockReturnValue({
+        (useApp as unknown as Mock).mockReturnValue({
             glossary: [],
             addGlossaryTerm: addMock,
         });

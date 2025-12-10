@@ -1,4 +1,4 @@
-import { describe, it, expect, vi } from 'vitest';
+import { describe, it, expect, vi, type Mock } from 'vitest';
 import { render, screen } from '@testing-library/react';
 import userEvent from '@testing-library/user-event';
 import Results from '../../../components/Results/Results';
@@ -10,7 +10,7 @@ vi.mock('../../../context/AppContext', () => ({
 
 describe('Results', () => {
     it('renders results list', () => {
-        (useApp as any).mockReturnValue({
+        (useApp as unknown as Mock).mockReturnValue({
             results: [
                 { filename: 'test.png', alt: 'Test Alt', description: 'Test Desc', imageUrl: 'blob:url' }
             ],
@@ -26,7 +26,7 @@ describe('Results', () => {
 
     it('allows editing alt text', async () => {
         const updateResultMock = vi.fn();
-        (useApp as any).mockReturnValue({
+        (useApp as unknown as Mock).mockReturnValue({
             results: [{ filename: 'test.png', alt: 'Original' }],
             updateResult: updateResultMock,
         });

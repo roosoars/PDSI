@@ -1,4 +1,4 @@
-import { describe, it, expect, vi } from 'vitest';
+import { describe, it, expect, vi, type Mock } from 'vitest';
 import { render, screen } from '@testing-library/react';
 import userEvent from '@testing-library/user-event';
 import Settings from '../../../components/Settings/Settings';
@@ -25,7 +25,7 @@ describe('Settings', () => {
     };
 
     it('renders all settings sections', () => {
-        (useApp as any).mockReturnValue(mockContext);
+        (useApp as unknown as Mock).mockReturnValue(mockContext);
         render(<Settings onClose={() => { }} />);
 
         expect(screen.getByText('Provedor de IA')).toBeInTheDocument();
@@ -36,12 +36,11 @@ describe('Settings', () => {
 
     it('updates settings', async () => {
         const setModelMock = vi.fn();
-        (useApp as any).mockReturnValue({
+        (useApp as unknown as Mock).mockReturnValue({
             ...mockContext,
             setModel: setModelMock,
         });
 
-        const user = userEvent.setup();
         render(<Settings onClose={() => { }} />);
 
         // Interaction with selects can be tricky with libraries, standard select:
@@ -55,7 +54,7 @@ describe('Settings', () => {
     it('saves api key', async () => {
         const setApiKeyMock = vi.fn();
         const onCloseMock = vi.fn();
-        (useApp as any).mockReturnValue({
+        (useApp as unknown as Mock).mockReturnValue({
             ...mockContext,
             setApiKey: setApiKeyMock,
         });
