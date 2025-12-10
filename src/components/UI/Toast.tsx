@@ -1,4 +1,4 @@
-import { useEffect, useState } from 'react';
+import { useEffect, useState, useCallback } from 'react';
 import { X, CheckCircle, AlertCircle, Info, AlertTriangle } from 'lucide-react';
 import './Toast.css';
 
@@ -23,12 +23,12 @@ export default function Toast({
 }: ToastProps) {
     const [isClosing, setIsClosing] = useState(false);
 
-    const handleClose = () => {
+    const handleClose = useCallback(() => {
         setIsClosing(true);
         setTimeout(() => {
             onClose();
         }, 200); // Match animation duration
-    };
+    }, [onClose]);
 
     useEffect(() => {
         const timer = setTimeout(() => {
@@ -36,7 +36,7 @@ export default function Toast({
         }, duration);
 
         return () => clearTimeout(timer);
-    }, [duration]);
+    }, [duration, handleClose]);
 
     const icons = {
         success: <CheckCircle size={20} />,

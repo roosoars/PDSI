@@ -27,7 +27,7 @@ vi.mock('openai', () => ({
 }));
 
 // Import after mocks are set up
-const { generateDescription, generateBatchDescriptions } = await import('./ai-service');
+const { generateDescription, generateBatchDescriptions } = await import("../../services/ai-service");
 
 // Mock file
 const createMockFile = (name: string): File => {

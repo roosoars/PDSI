@@ -1,4 +1,4 @@
-import { render, screen, act } from '@testing-library/react';
+import { render, screen } from '@testing-library/react';
 import { describe, it, expect, vi, beforeEach, afterEach } from 'vitest';
 import { ThemeProvider, useTheme } from '../../context/ThemeContext';
 import userEvent from '@testing-library/user-event';
@@ -19,7 +19,7 @@ describe('ThemeContext', () => {
         // Clear localStorage and reset mocks
         localStorage.clear();
         vi.clearAllMocks();
-        
+
         // Mock matchMedia
         Object.defineProperty(window, 'matchMedia', {
             writable: true,
@@ -37,7 +37,7 @@ describe('ThemeContext', () => {
     });
 
     afterEach(() => {
-      document.body.removeAttribute('data-theme');
+        document.body.removeAttribute('data-theme');
     });
 
     it('uses default light theme if no preference', () => {
@@ -93,7 +93,7 @@ describe('ThemeContext', () => {
         );
         expect(screen.getByTestId('theme-value')).toHaveTextContent('dark');
     });
-    
+
     it('initializes from localStorage if set', () => {
         localStorage.setItem('theme', 'dark');
         render(
@@ -101,6 +101,6 @@ describe('ThemeContext', () => {
                 <TestComponent />
             </ThemeProvider>
         );
-         expect(screen.getByTestId('theme-value')).toHaveTextContent('dark');
+        expect(screen.getByTestId('theme-value')).toHaveTextContent('dark');
     });
 });

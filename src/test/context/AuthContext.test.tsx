@@ -1,5 +1,5 @@
 import { render, screen, waitFor } from '@testing-library/react';
-import { describe, it, expect, vi, beforeEach } from 'vitest';
+import { describe, it, expect, vi, beforeEach, type Mock } from 'vitest';
 import { AuthProvider, useAuth } from '../../context/AuthContext';
 import * as firebaseAuth from 'firebase/auth';
 import userEvent from '@testing-library/user-event';
@@ -49,7 +49,7 @@ describe('AuthContext', () => {
 
     it('starts in loading state and updates when auth state resolves', async () => {
         // Mock onAuthStateChanged to immediately return null (no user logged in initially)
-        (firebaseAuth.onAuthStateChanged as any).mockImplementation((auth: any, callback: any) => {
+        (firebaseAuth.onAuthStateChanged as Mock).mockImplementation((_auth: unknown, callback: (user: unknown) => void) => {
             callback(null);
             return () => { }; // unsubscribe
         });
@@ -67,7 +67,7 @@ describe('AuthContext', () => {
     });
 
     it('sets user when onAuthStateChanged provides a user', async () => {
-        (firebaseAuth.onAuthStateChanged as any).mockImplementation((auth: any, callback: any) => {
+        (firebaseAuth.onAuthStateChanged as Mock).mockImplementation((_auth: unknown, callback: (user: unknown) => void) => {
             callback(mockUser);
             return () => { };
         });
@@ -82,7 +82,7 @@ describe('AuthContext', () => {
     });
 
     it('calls signInWithPopup when loginWithGoogle is called', async () => {
-        (firebaseAuth.onAuthStateChanged as any).mockImplementation((auth: any, callback: any) => {
+        (firebaseAuth.onAuthStateChanged as Mock).mockImplementation((_auth: unknown, callback: (user: unknown) => void) => {
             callback(null);
             return () => { };
         });
@@ -104,7 +104,7 @@ describe('AuthContext', () => {
     });
 
     it('calls signOut when logout is called', async () => {
-        (firebaseAuth.onAuthStateChanged as any).mockImplementation((auth: any, callback: any) => {
+        (firebaseAuth.onAuthStateChanged as Mock).mockImplementation((_auth: unknown, callback: (user: unknown) => void) => {
             callback(mockUser);
             return () => { };
         });

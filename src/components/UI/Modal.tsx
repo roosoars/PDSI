@@ -1,4 +1,4 @@
-import { type ReactNode, useEffect, useState } from 'react';
+import { type ReactNode, useEffect, useState, useCallback } from 'react';
 import { X } from 'lucide-react';
 import './Modal.css';
 
@@ -31,13 +31,13 @@ export default function Modal({
 }: ModalProps) {
     const [isClosing, setIsClosing] = useState(false);
 
-    const handleClose = () => {
+    const handleClose = useCallback(() => {
         setIsClosing(true);
         setTimeout(() => {
             setIsClosing(false);
             onClose();
         }, 200); // Match animation duration
-    };
+    }, [onClose]);
 
     useEffect(() => {
         const handleEscape = (e: KeyboardEvent) => {
@@ -55,7 +55,7 @@ export default function Modal({
             document.removeEventListener('keydown', handleEscape);
             document.body.style.overflow = '';
         };
-    }, [isOpen, closeOnEscape]);
+    }, [isOpen, closeOnEscape, handleClose]);
 
     const handleBackdropClick = (e: React.MouseEvent) => {
         if (closeOnBackdrop && e.target === e.currentTarget) {
